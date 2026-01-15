@@ -34,10 +34,13 @@ jobs:
 
     - name: Test with unittest
       run: |
-        coverage run --source=./scripts setup.py test
+        export PYTHONPATH=$(pwd)/scripts:$PYTHONPATH
+        export PATH=$(pwd)/scripts:$PATH
+        coverage run --parallel-mode --source=./scripts/paplot -m unittest discover -v -s tests/python
+        coverage combine
         coverage report
+
         bash tests/build_example.sh
         cd tests
-        npm i -g npm
         npm install
         npm test

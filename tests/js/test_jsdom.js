@@ -23,13 +23,48 @@ require('../src/html/data_pmsignature2.js');
         describe( 'Tests pass through use jsdom...', function () {
 
             beforeEach(() => {
-                var jsdom = require('jsdom');
+                const { JSDOM } = require('jsdom');
+                const dom = new JSDOM('<html><body><div id="ca_floats"></div><div id="collision_matrix_floats"></div><div id="pms_floats"></div><div id="sig_floats"></div></body></html>', {
+                    url: "http://localhost",
+                });
 
-                global.document = jsdom.jsdom('<html><body></body></html>')
-                global.window = document.defaultView;
-                global.navigator = window.navigator;
-                global.location = window.location;
+                global.window = dom.window;
+                global.document = dom.window.document;
+                global.navigator = dom.window.navigator;
+                global.location = dom.window.location;
+
+                const originalGetId = global.document.getElementById;
+                global.document.getElementById = function(id) {
+                    const el = originalGetId.call(global.document, id);
+                    if (el) return el;
+                    return {
+                        appendChild: function() {},
+                        style: {},
+                        setAttribute: function() {},
+                        getAttribute: function() { return ""; },
+                        oncontextmenu: null,
+                        innerHTML: "",
+                        childNodes: []
+                    };
+                };
+
+                global.window.open = function() {
+                    return { focus: function() {}, close: function() {} };
+                };
+
+                if (global.window.SVGElement) {
+                    Object.defineProperty(global.window.SVGElement.prototype, 'className', {
+                        get: function() {
+                            return this.getAttribute('class') || "";
+                        },
+                        set: function(value) {
+                            this.setAttribute('class', value);
+                        },
+                        configurable: true
+                    });
+                }
             });
+
             afterEach(() => {
                 delete global.document;
                 delete global.window;

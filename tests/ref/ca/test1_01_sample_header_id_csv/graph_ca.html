@@ -1,82 +1,143 @@
 <html lang="en">
-<head>
-  <title>CA graphs - test1_01_sample_header_id_csv</title>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  
-  <link rel="stylesheet" type="text/css" href="../layout/paplot.css"/>
-</head>
-<body>
+  <head>
+    <title>CA graphs - test1_01_sample_header_id_csv</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-<div class="version">
-Generated on 2017-12-04 13:45:37 for test1_01_sample_header_id_csv by paplot-0.5.6.
-</div>
+    <link rel="stylesheet" type="text/css" href="../layout/paplot.css" />
+    <link rel="stylesheet" type="text/css" href="../layout/ca.css" />
+  </head>
+  <body>
+    <div class="version">
+      Generated on 2026-01-15 10:18:30 for test1_01_sample_header_id_csv by paplot-0.5.12.
+    </div>
 
-<div class="container">
-  <h2 id="title">CA graphs - test1_01_sample_header_id_csv</h2>
+    <div class="container">
+      <h2 id="title">CA graphs - test1_01_sample_header_id_csv</h2>
 
-  <p>Style of selected graphs<br>
-  <input type="radio" name="q2" value="hilight" onclick="ca_draw.thumb_reset()" checked> Highlight selected graphs
-  <input type="radio" name="q2" value="hide" onclick="ca_draw.thumb_reset()"> Hide non-selected graphs
-  </p>
-  <p><input type="button" value="Reset" onclick="ca_draw.thumb_reset()"></p>
+      <p>
+        Style of selected graphs<br />
+        <input type="radio" name="q2" value="hilight" onclick="ca_draw.thumb_reset()" checked /> Highlight selected graphs
+        <input type="radio" name="q2" value="hide" onclick="ca_draw.thumb_reset()" /> Hide non-selected graphs
+      </p>
 
-<!-- save image --><button type="button" onclick="ca_draw.push_export()" id="dw_btn" style="margin-bottom: 20px;"><img src="../layout/download.png" style="margin-right: 5px;">Export</button><div id="btn"></div>
-<!-- legend --> <div id='legend_html'></div><div id='legend_svg'></div>
+      <div id="checkbox_overlay">
+        <div>
+          Options
+          <div>
+            <input type="checkbox" id="cb_opt_highlight" onclick="ca_draw.auto_overlaying('cb_opt_highlight')" checked />
+            <label for="cb_opt_highlight">
+              Automatic overlay when selecting graphs in highlight mode (Circosplot checkboxes also change automatically)
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" id="cb_opt_hide" onclick="ca_draw.auto_overlaying('cb_opt_hide')" checked />
+            <label for="cb_opt_hide">
+              Automatic overlay when selecting graphs in hide mode
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" id="cb_opt_checkbox" onclick="ca_draw.auto_overlaying('cb_opt_checkbox')" checked />
+            <label for="cb_opt_checkbox">
+              Automatic overlay when clicking circosplot checkboxes
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" id="cb_opt_title" checked />
+            <label for="cb_opt_title">
+              Display full title after
+              <select id="title_timeout_interval">
+                <option value="0.0" selected>0.0</option>
+                <option value="0.5">0.5</option>
+                <option value="1.0">1.0</option>
+                <option value="1.5">1.5</option>
+                <option value="2.0">2.0</option>
+                <option value="2.5">2.5</option>
+                <option value="3.0">3.0</option>
+              </select>
+              second with mouse pointer over circosplot title
+            </label>
+          </div>
+        </div>
+      </div>
+      <p><input type="button" value="Reset" onclick="ca_draw.thumb_reset()" /></p>
 
-<div id="selector"></div>
+      <!-- save image -->
+      <button type="button" onclick="ca_draw.push_export()" id="dw_btn" style="margin-bottom: 20px;">
+        <img src="../layout/download.png" style="margin-right: 5px;" />Export
+      </button>
+      <div id="btn"></div>
+      <!-- legend -->
+      <div id="legend_html"></div>
+      <div id="legend_svg"></div>
 
-<!-- ### tumbnails ### -->
-<div>
-<ul>
-<li class="thumb" id="thumb0_li"><strong>SAMPLE00<br></strong><div id="thumb0" onclick="ca_draw.show_float(event,'0','SAMPLE00')"></div></li>
-<li class="thumb" id="thumb1_li"><strong>SAMPLE01<br></strong><div id="thumb1" onclick="ca_draw.show_float(event,'1','SAMPLE01')"></div></li>
-<li class="thumb" id="thumb2_li"><strong>SAMPLE02<br></strong><div id="thumb2" onclick="ca_draw.show_float(event,'2','SAMPLE02')"></div></li>
+      <div id="selector"></div>
 
-</ul>
-</div>
+      <!-- buttons for overlay -->
+      <div style="margin: 10px;">
+        <input id="btn_overlay" type="button" value="Overlay" onclick="ca_draw.start_overlay()" />
+        <input id="btn_on" type="button" value="ON" onclick="ca_draw.checkbox_on()" />
+        <input id="btn_off" type="button" value="OFF" onclick="ca_draw.checkbox_off()" />
+        <input id="btn_reverse" type="button" value="Reverse" onclick="ca_draw.checkbox_reverse()" />
+        <div id="overlay_pos"></div>
+      </div>
 
-</div>
+      <!-- ### tumbnails ### -->
+      <div>
+        <ul>
+<li class="thumb" id="thumb0_li"><div class="thumb_head" id="thumb0_head"><label><input type="checkbox" name="thumb_cb" value="0" checked="checked" onclick="ca_draw.auto_overlaying('cb_thumb')" /><span class="thumb_title" onmouseover="ca_draw.thumb_title_mouseover('#thumb0_head')" onmouseout="ca_draw.thumb_title_mouseout('#thumb0_head')"><strong>SAMPLE00</strong></span></label></div><div class="thumb_circos" id="thumb0" onclick="ca_draw.show_float(event,'0','SAMPLE00')"></div></li>
+<li class="thumb" id="thumb1_li"><div class="thumb_head" id="thumb1_head"><label><input type="checkbox" name="thumb_cb" value="1" checked="checked" onclick="ca_draw.auto_overlaying('cb_thumb')" /><span class="thumb_title" onmouseover="ca_draw.thumb_title_mouseover('#thumb1_head')" onmouseout="ca_draw.thumb_title_mouseout('#thumb1_head')"><strong>SAMPLE01</strong></span></label></div><div class="thumb_circos" id="thumb1" onclick="ca_draw.show_float(event,'1','SAMPLE01')"></div></li>
+<li class="thumb" id="thumb2_li"><div class="thumb_head" id="thumb2_head"><label><input type="checkbox" name="thumb_cb" value="2" checked="checked" onclick="ca_draw.auto_overlaying('cb_thumb')" /><span class="thumb_title" onmouseover="ca_draw.thumb_title_mouseover('#thumb2_head')" onmouseout="ca_draw.thumb_title_mouseout('#thumb2_head')"><strong>SAMPLE02</strong></span></label></div><div class="thumb_circos" id="thumb2" onclick="ca_draw.show_float(event,'2','SAMPLE02')"></div></li>
 
-<!-- ### details ### -->
-<div class="float_frame" id="float0"><table><tr><td class="float_header" id="float0_t"><strong>SAMPLE00</strong></td><td><input type="button" value="X" onclick="ca_draw.hide_float('#float0')" margin="0"></td></tr><tr><td colspan="2" class="float_svg" id="map0"></td></tr></table><div class="float_handle" id="float0_h" onmousedown="ca_draw.mouse_down(event, '#float0')" onmousemove="ca_draw.mouse_move(event, '#float0')" onmouseup="ca_draw.mouse_up(event, '#float0')" onmouseout="ca_draw.mouse_out('#float0')"></div></div>
-<div class="float_frame" id="float1"><table><tr><td class="float_header" id="float1_t"><strong>SAMPLE01</strong></td><td><input type="button" value="X" onclick="ca_draw.hide_float('#float1')" margin="0"></td></tr><tr><td colspan="2" class="float_svg" id="map1"></td></tr></table><div class="float_handle" id="float1_h" onmousedown="ca_draw.mouse_down(event, '#float1')" onmousemove="ca_draw.mouse_move(event, '#float1')" onmouseup="ca_draw.mouse_up(event, '#float1')" onmouseout="ca_draw.mouse_out('#float1')"></div></div>
-<div class="float_frame" id="float2"><table><tr><td class="float_header" id="float2_t"><strong>SAMPLE02</strong></td><td><input type="button" value="X" onclick="ca_draw.hide_float('#float2')" margin="0"></td></tr><tr><td colspan="2" class="float_svg" id="map2"></td></tr></table><div class="float_handle" id="float2_h" onmousedown="ca_draw.mouse_down(event, '#float2')" onmousemove="ca_draw.mouse_move(event, '#float2')" onmouseup="ca_draw.mouse_up(event, '#float2')" onmouseout="ca_draw.mouse_out('#float2')"></div></div>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ### details ### -->
+<div class="float_frame" id="float0" onclick="ca_draw.bring_window_to_front('#float0')"><table><tr><tr><td class="float_header" id="float0_t"><strong>SAMPLE00</strong></td><td><input type="button" value="X" class="float_close" onclick="ca_draw.hide_float('#float0')" margin="0" /></td></tr></tr><tr><td colspan="2" class="float_svg" id="map0"></td></tr></table><div class="float_handle" id="float0_h" onmousedown="ca_draw.mouse_down(event, '#float0')" onmousemove="ca_draw.mouse_move(event, '#float0')" onmouseup="ca_draw.mouse_up(event, '#float0')" onmouseout="ca_draw.mouse_out('#float0')"></div></div>
+<div class="float_frame" id="float1" onclick="ca_draw.bring_window_to_front('#float1')"><table><tr><tr><td class="float_header" id="float1_t"><strong>SAMPLE01</strong></td><td><input type="button" value="X" class="float_close" onclick="ca_draw.hide_float('#float1')" margin="0" /></td></tr></tr><tr><td colspan="2" class="float_svg" id="map1"></td></tr></table><div class="float_handle" id="float1_h" onmousedown="ca_draw.mouse_down(event, '#float1')" onmousemove="ca_draw.mouse_move(event, '#float1')" onmouseup="ca_draw.mouse_up(event, '#float1')" onmouseout="ca_draw.mouse_out('#float1')"></div></div>
+<div class="float_frame" id="float2" onclick="ca_draw.bring_window_to_front('#float2')"><table><tr><tr><td class="float_header" id="float2_t"><strong>SAMPLE02</strong></td><td><input type="button" value="X" class="float_close" onclick="ca_draw.hide_float('#float2')" margin="0" /></td></tr></tr><tr><td colspan="2" class="float_svg" id="map2"></td></tr></table><div class="float_handle" id="float2_h" onmousedown="ca_draw.mouse_down(event, '#float2')" onmousemove="ca_draw.mouse_move(event, '#float2')" onmouseup="ca_draw.mouse_up(event, '#float2')" onmouseout="ca_draw.mouse_out('#float2')"></div></div>
 
 
-<!-- ### tooltip ### -->
-<div id="tooltip" class="hidden"></div>
-<!-- canvas for save image -->
-<canvas id="dw_canvas" class="hidden"></canvas>
+    <!-- ### overlay ### -->
+<div id="overlay" style="margin: 10px;"><div class="float_frame" id="float3" onclick="ca_draw.bring_window_to_front('#float3')"><table><tr><tr><td class="float_header" id="float3_t"><strong>OVERLAY</strong></td><td><input type="button" value="X" class="float_close" onclick="ca_draw.close_overlay()" margin="0" /></td></tr></tr><tr><td colspan="2" class="float_svg" id="map3"></td></tr></table><div class="float_handle" id="float3_h" onmousedown="ca_draw.mouse_down(event, '#float3')" onmousemove="ca_draw.mouse_move(event, '#float3')" onmouseup="ca_draw.mouse_up(event, '#float3')" onmouseout="ca_draw.mouse_out('#float3')"></div></div></div>
 
-<script type="text/javascript" src="../lib/d3_v3.5.13/d3.min.js"></script>
-<script type="text/javascript" src="../lib/d3-legend_v1.10.0/d3-legend.min.js"></script>
-<script type="text/javascript" src="../style/default.js"></script>
-<script type="text/javascript" src="../js/utils.js"></script>
-<script type="text/javascript" src="../js/legend.js"></script>
-<script type="text/javascript" src="../js/downloader.js"></script>
-<script type="text/javascript" src="../js/bundle.js"></script>
-<script type="text/javascript" src="../js/bar.js"></script>
-<script type="text/javascript" src="./data_ca.js"></script>
-<script type="text/javascript" src="../js/graph_ca.js"></script>
-<script>
-ca_draw.draw_select();
+
+    <!-- ### tooltip ### -->
+    <div id="tooltip" class="hidden"></div>
+    <!-- canvas for save image -->
+    <canvas id="dw_canvas" class="hidden"></canvas>
+    <!-- download -->
+    <div id="download"></div>
+
+    <script type="text/javascript" src="../lib/d3_v3.5.13/d3.min.js"></script>
+    <script type="text/javascript" src="../lib/d3-legend_v1.10.0/d3-legend.min.js"></script>
+    <script type="text/javascript" src="../style/default.js"></script>
+    <script type="text/javascript" src="../js/utils.js"></script>
+    <script type="text/javascript" src="../js/legend.js"></script>
+    <script type="text/javascript" src="../js/downloader.js"></script>
+    <script type="text/javascript" src="../js/bundle.js"></script>
+    <script type="text/javascript" src="../js/bar.js"></script>
+    <script type="text/javascript" src="./data_ca.js"></script>
+    <script type="text/javascript" src="../js/graph_ca.js"></script>
+    <script>
+      ca_draw.draw_select();
 ca_draw.draw_bandle_thumb("0", "SAMPLE00");
 ca_draw.draw_bandle_thumb("1", "SAMPLE01");
 ca_draw.draw_bandle_thumb("2", "SAMPLE02");
 
 
-// resize timer
-var timer = false;
-window.addEventListener('resize', function() {
-    if (timer !== false) {
-        clearTimeout(timer);
-    }
-    timer = setTimeout(function() {
-        ca_draw.update_div();
-        ca_draw.resize_if(); //div_select_bar.resize();
-        ca_draw.thumb_reset();
-    }, 200);
-});
-</script>
-</body>
+      // resize timer
+      var timer = false;
+        window.addEventListener("resize", function () {
+        if (timer !== false) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(function () {
+          ca_draw.update_div();
+          ca_draw.resize_if(); //div_select_bar.resize();
+          ca_draw.thumb_reset();
+        }, 200);
+      });
+    </script>
+  </body>
 </html>
